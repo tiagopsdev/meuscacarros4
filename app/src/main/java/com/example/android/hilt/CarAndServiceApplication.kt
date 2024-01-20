@@ -14,29 +14,10 @@
  * limitations under the License.
  */
 
-buildscript {
-    ext.kotlin_version = '1.9.0'
-    ext.hilt_version = '2.48.1'
-    ext.activity_version = '1.6.1'
-    ext.fragment_version = '1.5.5'
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
-    }
-}
+package com.example.android.hilt
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+@HiltAndroidApp
+class CarAndServiceApplication : Application()

@@ -14,29 +14,24 @@
  * limitations under the License.
  */
 
-buildscript {
-    ext.kotlin_version = '1.9.0'
-    ext.hilt_version = '2.48.1'
-    ext.activity_version = '1.6.1'
-    ext.fragment_version = '1.5.5'
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
-    }
-}
+package com.example.android.hilt.data
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+/**
+ * Data class that represent the a table in the database.
+ */
+@Entity(tableName = "cars")
+data class Car(
+    var carName: String,
+    var kmActual: Int,
+    var kmOilChange: Int,
+    var kmWheels: Int,
+    var kmBreakes: Int,
+    var kmFilters: Int,
+    ) {
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
 }

@@ -1,0 +1,31 @@
+<!--
+  ~ Copyright (C) 2020 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">Carros e Serviços</string>
+    <string name="buttons_welcome">Please interact with the buttons, we\'ll track your clicks!</string>
+    <string name="button_1">Button 1</string>
+    <string name="button_2">Button 2</string>
+    <string name="button_3">Button 3</string>
+    <string name="see_all_logs">SEE ALL LOGS</string>
+    <string name="delete_logs">Delete Logs</string>
+    <string name="deleteAllCars">Deletar todos os carros</string>
+    <string name="configurations">Configurações</string>
+    <string name="addCar">Adicionar carro</string>
+    <string name="listAllCars">Listar Carros na Garagem</string>
+    <string name="titleCarsAndServices">Carros e Serviços</string>
+    <string name="car_menenger">Gerenciamento do Carro</string>
+    <string name="save_changes">Salvar Alterações</string>
+</resources>

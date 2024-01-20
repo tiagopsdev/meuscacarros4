@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.hilt.ui.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/txvManangeCarTittle"
+            style="@style/TitleText"
+            android:text="Gerenciamento do carro" />
+
+        <!-- Car Name -->
+        <TextView
+            android:id="@+id/txvCarName"
+            style="@style/Label"
+            android:text="Nome do Carro" />
+
+        <EditText
+            android:id="@+id/extCarName"
+            style="@style/EditText"
+            android:hint="Principal" />
+
+        <!-- Actual KM -->
+        <TextView
+            android:id="@+id/txvActualKM"
+            style="@style/Label"
+            android:text="KM Atual" />
+
+        <EditText
+            android:id="@+id/extActualKM"
+            style="@style/EditText"
+            android:hint="10000"
+            android:inputType="number"
+            android:maxLength="6" />
+        <ImageView
+            style="@style/SeparatorSection"/>
+
+        <!-- Services Title -->
+        <TextView
+            android:id="@+id/extServiceTittle"
+            style="@style/SectionTitle"
+            android:text="Serviços" />
+
+        <!-- Oil Change -->
+        <TextView
+            android:id="@+id/txvOilChange"
+            style="@style/Label"
+            android:text="Troca de Óleo (KM)" />
+
+        <EditText
+            android:id="@+id/extOilChange"
+            style="@style/EditText"
+            android:hint="10000"
+            android:inputType="number"
+            android:maxLength="6" />
+
+        <TextView
+            android:id="@+id/txvInfoOilChange"
+            style="@style/InfoText"
+            android:text="Proxima troca de oleo com 100000 KMs" />
+
+        <ImageView
+            style="@style/SeparatorItens"/>
+
+
+        <!-- Wheels -->
+        <TextView
+            android:id="@+id/txvWheels"
+            style="@style/Label"
+            android:text="Balanceamento e Geometria" />
+
+        <EditText
+            android:id="@+id/extWheels"
+            style="@style/EditText"
+            android:hint="10000"
+            android:inputType="number"
+            android:maxLength="6" />
+
+        <TextView
+            android:id="@+id/txvInfoWheels"
+            style="@style/InfoText"
+            android:text="Proxima troca de oleo com 100000 KMs" />
+
+        <ImageView
+            style="@style/SeparatorItens"/>
+
+        <!-- Repeat the pattern for other services -->
+        <!-- Brakes -->
+        <TextView
+            android:id="@+id/txvBreakes"
+            style="@style/Label"
+            android:text="Balanceamento e Geometria" />
+
+        <EditText
+            android:id="@+id/extBreakes"
+            style="@style/EditText"
+            android:hint="10000"
+            android:inputType="number"
+            android:maxLength="6" />
+
+        <TextView
+            android:id="@+id/txvInfoWBreakes"
+            style="@style/InfoText"
+            android:text="Proxima troca de oleo com 100000 KMs" />
+
+        <ImageView
+            style="@style/SeparatorItens"/>
+
+
+        <!-- Brakes -->
+        <TextView
+            android:id="@+id/txvFilters"
+            style="@style/Label"
+            android:text="Balanceamento e Geometria" />
+
+        <EditText
+            android:id="@+id/extFilters"
+            style="@style/EditText"
+            android:hint="10000"
+            android:inputType="number"
+            android:maxLength="6" />
+
+        <TextView
+            android:id="@+id/txvInfoFilters"
+            style="@style/InfoText"
+            android:text="Proxima troca de oleo com 100000 KMs" />
+
+        <ImageView
+            style="@style/SeparatorSection"/>
+
+
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/save_car"
+            style="@style/PrimaryButton"
+            android:text="@string/save_changes" />
+    </LinearLayout>
+</ScrollView>

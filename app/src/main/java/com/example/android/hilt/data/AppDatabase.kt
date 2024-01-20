@@ -14,29 +14,16 @@
  * limitations under the License.
  */
 
-buildscript {
-    ext.kotlin_version = '1.9.0'
-    ext.hilt_version = '2.48.1'
-    ext.activity_version = '1.6.1'
-    ext.fragment_version = '1.5.5'
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
-    }
-}
+package com.example.android.hilt.data
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import androidx.room.Database
+import androidx.room.RoomDatabase
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+/**
+ * SQLite Database for storing the logs.
+ */
+@Database(entities = arrayOf(Car::class, Configuration::class), version = 1, exportSchema = false)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun carDao(): CarDao
+    abstract fun configurationDao(): ConfigurationDao
 }
