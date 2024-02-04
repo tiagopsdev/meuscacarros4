@@ -16,7 +16,6 @@
 
 package com.example.android.hilt.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -24,17 +23,16 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.hilt.R
+import com.example.android.hilt.analytics.logOpenAPP
 import com.example.android.hilt.data.CarDataSource
 import com.example.android.hilt.di.CarDbModule
 import com.example.android.hilt.navigator.AppNavigator
 import com.example.android.hilt.navigator.Screens
 import com.example.android.hilt.util.CarConverter
+import com.example.android.hilt.util.FirebaseAnalyticsProvider
 import com.example.android.hilt.viewmodel.CarViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 
 /**
  * Main activity of the application.
@@ -52,6 +50,10 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var carConverter: CarConverter
 
+
+    private var firebaseAnalytics = FirebaseAnalyticsProvider()
+
+
     val carViewModel: CarViewModel by viewModels()
 
 
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //navigator = (applicationContext as CarAndServiceApplication).serviceLocator.provideNavigator(this)
-
+        firebaseAnalytics.firebaseAnalytics(applicationContext).logOpenAPP()
         if (savedInstanceState == null) {
             navigator.navigateTo(Screens.HOME)
         }
@@ -87,19 +89,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.btnSave_Car_AppBar -> {
-
-
-                carViewModel.getCar()?.let {
-                    carDataSource.addCar(it)
-                }?:
-                showmessage("Faltam informações para efetuar o cadastro")
-
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
+        //TODO(Create a work menu)
+        return true
     }
     fun showmessage(msg: String = "Default message"){
 

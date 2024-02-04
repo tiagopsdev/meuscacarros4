@@ -27,11 +27,13 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.android.hilt.R
+import com.example.android.hilt.analytics.logCreateOrUpdateCar
 import com.example.android.hilt.data.Car
 import com.example.android.hilt.data.CarDataSource
 import com.example.android.hilt.di.CarDbModule.DatabaseCar
 import com.example.android.hilt.navigator.AppNavigator
 import com.example.android.hilt.util.CarConverter
+import com.example.android.hilt.util.FirebaseAnalyticsProvider
 import com.example.android.hilt.viewmodel.CarViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -57,6 +59,7 @@ class CarManagerFragment(private var carParam: Car? = null) : Fragment() {
     val carViewModel: CarViewModel by activityViewModels()
 
     lateinit  var car: Car
+    private val firebaseAnalytics = FirebaseAnalyticsProvider()
 
 
     override fun onCreateView(
@@ -90,11 +93,14 @@ class CarManagerFragment(private var carParam: Car? = null) : Fragment() {
         /* Fields */
 
         val carNameEditText = view.findViewById<EditText>(R.id.extCarName)
+        val carModelEditText = view.findViewById<EditText>(R.id.extCarModel)
         val actualKmEditText = view.findViewById<EditText>(R.id.extActualKM)
         val oilChangeKmEditText = view.findViewById<EditText>(R.id.extOilChange)
         val wheelsKmEditText = view.findViewById<EditText>(R.id.extWheels)
         val brakesKmEditText = view.findViewById<EditText>(R.id.extBreakes)
         val filtersKmEditText = view.findViewById<EditText>(R.id.extFilters)
+
+        var timeStartNano = System.nanoTime()
 
         //
         if (carParam != null) {
@@ -103,20 +109,25 @@ class CarManagerFragment(private var carParam: Car? = null) : Fragment() {
             if (car != null){
 
                 carViewModel.setCarData(car!!)
+                carViewModel.setUpdateCar(true)
 
                 carNameEditText.setText(car.carName)
+                carModelEditText.setText(car.carModel)
                 actualKmEditText.setText(car.kmActual.toString())
                 oilChangeKmEditText.setText(car.kmOilChange.toString())
                 wheelsKmEditText.setText(car.kmWheels.toString())
                 brakesKmEditText.setText(car.kmBreakes.toString())
                 filtersKmEditText.setText(car.kmFilters.toString())
 
+            }else{
+                carViewModel.setUpdateCar(false)
             }
 
         }else{
 
-            car = Car("",0,0,0,0,0)
+            car = Car("","",0,0,0,0,0)
             car = getCarFromForm(view)
+            carViewModel.setUpdateCar(false)
 
         }
 
@@ -126,6 +137,11 @@ class CarManagerFragment(private var carParam: Car? = null) : Fragment() {
 
         // Add focus change listeners for each EditText field
         carNameEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                carViewModel.setCarData(getCarFromForm(view))
+            }
+        }
+        carModelEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 carViewModel.setCarData(getCarFromForm(view))
             }
@@ -167,12 +183,15 @@ class CarManagerFragment(private var carParam: Car? = null) : Fragment() {
             val carToAdd = getCarFromForm(view)
             if (carToAdd.carName != "")
                 carDataSource.addCar(carToAdd)
+            var timeSec = (System.nanoTime() - timeStartNano) / 1000000000
+            firebaseAnalytics.firebaseAnalytics(requireContext()).logCreateOrUpdateCar(carToAdd.carModel, carViewModel.getUpdateCar(), this.javaClass.name, timeSec)
         }
 
 
         // Define an array of EditText fields
         val editTextFields = arrayOf(
             carNameEditText,
+            carModelEditText,
             actualKmEditText,
             oilChangeKmEditText,
             wheelsKmEditText,
@@ -206,6 +225,7 @@ class CarManagerFragment(private var carParam: Car? = null) : Fragment() {
 
 
         val carName = view.findViewById<EditText>(R.id.extCarName).text.toString()
+        val carModel = view.findViewById<EditText>(R.id.extCarModel).text.toString()
         val actualKm =
             view.findViewById<EditText>(R.id.extActualKM).text.toString().toIntOrNull() ?: 0
         val oilChangeKm =
@@ -219,6 +239,7 @@ class CarManagerFragment(private var carParam: Car? = null) : Fragment() {
 
 
         car.carName = carName
+        car.carModel = carModel
         car.kmActual = actualKm
         car.kmOilChange = oilChangeKm
         car.kmWheels = wheelsKm

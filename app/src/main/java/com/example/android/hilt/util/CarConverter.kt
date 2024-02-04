@@ -31,6 +31,7 @@ class CarConverter @Inject constructor(){
         return mapOf(
 
             "carName" to car.carName,
+            "carModel" to car.carModel,
             "kmActual" to car.kmActual.toString(),
             "kmOilChange" to car.kmOilChange.toString(),
             "kmWheels" to car.kmWheels.toString(),
@@ -43,6 +44,7 @@ class CarConverter @Inject constructor(){
         return Car(
 
             map["carName"].toString(),
+            map["carModel"].toString(),
             map["kmActual"]?.toInt()!!,
             map["kmOilChange"]?.toInt()!!,
             map["kmWheels"]?.toInt()!!,

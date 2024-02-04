@@ -27,17 +27,26 @@ import javax.inject.Singleton
  * Data manager class that handles data manipulation between the database and the UI.
  */
 @Singleton
-class CarLocalDataSource @Inject constructor (private val carDao: CarDao) : CarDataSource {
+class CarLocalDataSource @Inject constructor (
+
+    private val carDao: CarDao,
+
+) : CarDataSource {
 
     private val executorService: ExecutorService = Executors.newFixedThreadPool(4)
     private val mainThreadHandler by lazy {
         Handler(Looper.getMainLooper())
     }
 
+
+
     override fun addCar(car: Car) {
 
         executorService.execute {
             carDao.insertAll(car)
+
+
+
 
         }
     }

@@ -25,6 +25,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "cars")
 data class Car(
     var carName: String,
+    var carModel: String,
     var kmActual: Int,
     var kmOilChange: Int,
     var kmWheels: Int,

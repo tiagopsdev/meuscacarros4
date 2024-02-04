@@ -26,12 +26,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.hilt.R
+import com.example.android.hilt.analytics.logCreateOrUpdateCar
+import com.example.android.hilt.analytics.logListCars
 import com.example.android.hilt.data.Car
 import com.example.android.hilt.data.CarDataSource
 import com.example.android.hilt.di.CarDbModule.DatabaseCar
 import com.example.android.hilt.navigator.AppNavigator
 import com.example.android.hilt.navigator.Screens
 import com.example.android.hilt.util.DateFormatter
+import com.example.android.hilt.util.FirebaseAnalyticsProvider
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -54,6 +57,8 @@ class CarsFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
+    private val firebaseAnalytics = FirebaseAnalyticsProvider()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,6 +71,7 @@ class CarsFragment : Fragment() {
         recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
             setHasFixedSize(true)
         }
+        firebaseAnalytics.firebaseAnalytics(requireContext()).logListCars()
 
         
 

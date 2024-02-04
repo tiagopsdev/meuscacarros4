@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "910539056888",
+    "project_id": "meuscarros4-85514",
+    "storage_bucket": "meuscarros4-85514.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910539056888:android:6471d7239520ff7792fd0d",
+        "android_client_info": {
+          "package_name": "com.example.android.hilt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPq8fFm8kMpI9fmPOEXixoPckR-litfSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

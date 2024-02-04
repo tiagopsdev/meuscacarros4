@@ -14,11 +14,16 @@ class CarViewModel @Inject constructor() : ViewModel() {
         // Define LiveData to hold shared data
         private val carLiveData = MutableLiveData<Car>()
         private var caridLiveData = MutableLiveData<Long?>()
+        private var updateCarLiveData = MutableLiveData(false)
 
         // Function to set the shared data
         fun setCarData(car: Car) {
             carLiveData.value = car
         }
+        fun setUpdateCar(flag: Boolean) {
+            updateCarLiveData.value = flag
+        }
+        fun getUpdateCar() = updateCarLiveData.value!!
 
         // Function to get the shared data as LiveData
         fun getCarData(): LiveData<Car> {

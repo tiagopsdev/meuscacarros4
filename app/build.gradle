@@ -20,6 +20,8 @@ plugins {
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
+    // Apply google-services plugin (101)
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -95,6 +97,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
     // Annotation processor
     kapt "androidx.lifecycle:lifecycle-compiler:2.7.0"
+
+    // Import the Firebase BoM (101)
+    implementation platform("com.google.firebase:firebase-bom:$firebaseBomVersion")
+
+    // COMPLETE: Add Firebase Analytics dependency (101)
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
